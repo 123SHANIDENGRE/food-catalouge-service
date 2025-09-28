@@ -6,9 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+import java.util.Objects;
+
+
 @Entity
 public class FoodItem {
 
@@ -77,4 +77,20 @@ public class FoodItem {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof FoodItem foodItem)) return false;
+        return id == foodItem.id && veg == foodItem.veg && Objects.equals(itemName, foodItem.itemName) && Objects.equals(itemDescription, foodItem.itemDescription) && Objects.equals(price, foodItem.price) && Objects.equals(restaurantId, foodItem.restaurantId) && Objects.equals(quantity, foodItem.quantity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, itemName, itemDescription, veg, price, restaurantId, quantity);
+    }
+
+
+
+
 }

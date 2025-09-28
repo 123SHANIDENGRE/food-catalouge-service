@@ -1,13 +1,8 @@
 package com.codedecode.foodcatalouge.dto;
 
+import java.util.Objects;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class FoodItemDTO {
 
 
@@ -75,5 +70,30 @@ public class FoodItemDTO {
 
     public void setVeg(boolean veg) {
         this.veg = veg;
+    }
+
+    public FoodItemDTO(int id, String itemName, String itemDescription, boolean veg, Long price, Integer restaurantId, Integer quantity) {
+        this.id = id;
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.veg = veg;
+        this.price = price;
+        this.restaurantId = restaurantId;
+        this.quantity = quantity;
+    }
+
+
+    public FoodItemDTO() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof FoodItemDTO that)) return false;
+        return id == that.id && veg == that.veg && Objects.equals(itemName, that.itemName) && Objects.equals(itemDescription, that.itemDescription) && Objects.equals(price, that.price) && Objects.equals(restaurantId, that.restaurantId) && Objects.equals(quantity, that.quantity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, itemName, itemDescription, veg, price, restaurantId, quantity);
     }
 }
